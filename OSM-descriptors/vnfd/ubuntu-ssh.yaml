@@ -1,0 +1,30 @@
+vnfd-catalog:
+    vnfd:
+    -   connection-point:
+        -   name: ping/cp0
+            type: VPORT
+        description: Empty ubuntu container with sshd (for testing)
+        id: ping
+        mgmt-interface:
+            cp: ping/cp0
+        name: ping
+        short-name: ping
+        vdu:
+        -   count: '1'
+            description: Ubuntu Trusty default Docker container
+            id: ubuntu
+            image: ubuntu-sshd
+            interface:
+            -   external-connection-point-ref: ping/cp0
+                name: ping0
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+            name: ubuntu
+            vm-flavor:
+                memory-mb: 512
+                storage-gb: 1
+                vcpu-count: 1
+        vendor: Paderborn University
+        version: '1.1'
+

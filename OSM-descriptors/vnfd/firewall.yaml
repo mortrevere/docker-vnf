@@ -1,0 +1,44 @@
+vnfd-catalog:
+    vnfd:
+    -   connection-point:
+        -   name: fwin
+            type: VPORT
+        -   name: fwout
+            type: VPORT
+        -   name: mgmt
+            type: VPORT
+        description: Firewall VNF based on iptables
+        id: firewall
+        mgmt-interface:
+            cp: mgmt
+        name: firewall
+        short-name: firewall
+        vdu:
+        -   count: '1'
+            description: Firewall on Ubuntu
+            id: ubuntu
+            image: firewall
+            interface:
+            -   external-connection-point-ref: fwin
+                name: fwin
+                position: 1
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+            -   external-connection-point-ref: fwout
+                name: fwout
+                position: 2
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+            -   external-connection-point-ref: mgmt
+                name: mgmt
+                position: 3
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+            name: ubuntu
+            vm-flavor:
+                memory-mb: 1024
+                storage-gb: 1
+                vcpu-count: 2

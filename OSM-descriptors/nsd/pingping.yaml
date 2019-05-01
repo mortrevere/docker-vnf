@@ -1,0 +1,27 @@
+nsd-catalog:
+    nsd:
+    -   constituent-vnfd:
+        -   member-vnf-index: '1'
+            vnfd-id-ref: ping
+        -   member-vnf-index: '2'
+            vnfd-id-ref: ping
+        description: Simple ping example network scenario with two identical VNFs.
+        id: pingping
+        name: pingping
+        short-name: pingping
+        vld:
+        -   description: Management VL
+            id: mgmt_vl
+            mgmt-network: 'true'
+            name: mgmt_vl
+            short-name: mgmt_vl
+            type: ELAN
+            vim-network-name: default
+            vnfd-connection-point-ref:
+            -   member-vnf-index-ref: '1'
+                vnfd-connection-point-ref: ping/cp0
+                vnfd-id-ref: ping
+            -   member-vnf-index-ref: '2'
+                vnfd-connection-point-ref: ping/cp0
+                vnfd-id-ref: ping
+

@@ -1,0 +1,62 @@
+nsd-catalog:
+    nsd:
+    -   constituent-vnfd:
+        -   member-vnf-index: '1'
+            vnfd-id-ref: firewall
+        -   member-vnf-index: '2'
+            vnfd-id-ref: ping2
+        -   member-vnf-index: '3'
+            vnfd-id-ref: ping2
+        -   member-vnf-index: '4'
+            vnfd-id-ref: ping2
+        description: iptables firewall with two hosts inside and one outside
+        id: one-way-ping
+        name: one-way-ping
+        short-name: one-way-ping
+        vld:
+        -   id: extnet
+            name: extnet
+            short-name: extnet
+            type: ELAN
+            vnfd-connection-point-ref:
+            -   member-vnf-index-ref: '1'
+                vnfd-connection-point-ref: fwout
+                vnfd-id-ref: firewall
+            -   member-vnf-index-ref: '3'
+                vnfd-connection-point-ref: ping/cp0
+                vnfd-id-ref: ping2
+        -   id: intnet
+            name: intnet
+            short-name: intnet
+            type: ELAN
+            vnfd-connection-point-ref:
+            -   member-vnf-index-ref: '1'
+                vnfd-connection-point-ref: fwin
+                vnfd-id-ref: firewall
+            -   member-vnf-index-ref: '2'
+                vnfd-connection-point-ref: ping/cp0
+                vnfd-id-ref: ping2
+            -   member-vnf-index-ref: '4'
+                vnfd-connection-point-ref: ping/cp0
+                vnfd-id-ref: ping2
+        -   description: Management VL
+            id: mgmt_vl
+            mgmt-network: 'true'
+            name: mgmt_vl
+            short-name: mgmt_vl
+            type: ELAN
+            vim-network-name: default
+            vnfd-connection-point-ref:
+            -   member-vnf-index-ref: '1'
+                vnfd-connection-point-ref: mgmt
+                vnfd-id-ref: firewall
+            -   member-vnf-index-ref: '2'
+                vnfd-connection-point-ref: mgmt
+                vnfd-id-ref: ping2
+            -   member-vnf-index-ref: '3'
+                vnfd-connection-point-ref: mgmt
+                vnfd-id-ref: ping2
+            -   member-vnf-index-ref: '4'
+                vnfd-connection-point-ref: mgmt
+                vnfd-id-ref: ping2
+
